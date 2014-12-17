@@ -15,7 +15,8 @@ router.get('/', function(req, res) {
 
 // create todo and send back all todos after creation
 router.post('/', function(req, res) {
-
+    console.log("req");
+    console.log(req.body);
     Todo.create(req.body, function (err, post) {
         if (err) return next(err);
         res.json(post);
