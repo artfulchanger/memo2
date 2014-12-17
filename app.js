@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var swig = require('swig');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -22,8 +23,11 @@ mongoose.connect('mongodb://localhost/test', function(err) {
 });
 
 // view engine setup
+
+// This is where all the magic happens!
+app.engine('html', swig.renderFile);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'swig');
+app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
